@@ -1,0 +1,95 @@
+{
+  "plugins": {
+    "arrow.nvim": {
+      "rev": "6e0f726f55f99332dd726a53effd6813786b6d49",
+      "src": "https://github.com/otavioschwanck/arrow.nvim"
+    },
+    "auto-session": {
+      "rev": "02a5588f677970a9bc784115c62bef9e5855499b",
+      "src": "https://github.com/rmagatti/auto-session"
+    },
+    "blink.cmp": {
+      "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
+      "src": "https://github.com/saghen/blink.cmp",
+      "version": "1.0.0 - 2.0.0"
+    },
+    "conform.nvim": {
+      "rev": "016802de402556da54c36bd7359b441266b01cdd",
+      "src": "https://github.com/stevearc/conform.nvim"
+    },
+    "fidget.nvim": {
+      "rev": "9e0201673e08e997e7cf52afca5565c70bd117f3",
+      "src": "https://github.com/j-hui/fidget.nvim"
+    },
+    "friendly-snippets": {
+      "rev": "7a1c9f7897a4eb078b157a04c7af81e5869215b1",
+      "src": "https://github.com/rafamadriz/friendly-snippets"
+    },
+    "fzf-lua": {
+      "rev": "82ddfe6efc56480c052fd213e0cbb2f024dfd754",
+      "src": "https://github.com/ibhagwan/fzf-lua"
+    },
+    "gitsigns.nvim": {
+      "rev": "c0862d382a35b7b45757d8d151a6a634c09bf3ce",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
+    "guess-indent.nvim": {
+      "rev": "84a4987ff36798c2fc1169cbaff67960aed9776f",
+      "src": "https://github.com/NMAC427/guess-indent.nvim"
+    },
+    "indentmini.nvim": {
+      "rev": "38572ce5a7a064a5deb89d6d861b7c40fc929ab1",
+      "src": "https://github.com/nvimdev/indentmini.nvim"
+    },
+    "mason-lspconfig.nvim": {
+      "rev": "97ccf96bb2e7adb5f82975068bd4c7307d2afa8a",
+      "src": "https://github.com/mason-org/mason-lspconfig.nvim"
+    },
+    "mason-tool-installer.nvim": {
+      "rev": "443f1ef8b5e6bf47045cb2217b6f748a223cf7dc",
+      "src": "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim"
+    },
+    "mason.nvim": {
+      "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
+      "src": "https://github.com/mason-org/mason.nvim"
+    },
+    "mini.statusline": {
+      "rev": "591b9d553dc3604b114577bc0f6e289ea3783fc2",
+      "src": "https://github.com/nvim-mini/mini.statusline"
+    },
+    "nvim-autopairs": {
+      "rev": "3172f40c16563db871a58f20d205c710ad782311",
+      "src": "https://github.com/windwp/nvim-autopairs"
+    },
+    "nvim-lspconfig": {
+      "rev": "4648fd8ba5c678d7e2db75ae44ffac269bb589d8",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-surround": {
+      "rev": "2e93e154de9ff326def6480a4358bfc149d5da2c",
+      "src": "https://github.com/kylechui/nvim-surround",
+      "version": "4.0.0 - 5.0.0"
+    },
+    "oil.nvim": {
+      "rev": "d3733d933833a0e59b813ecec99341527adf0c28",
+      "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "render-markdown.nvim": {
+      "rev": "a67f826164c38c836fc6060f32b275c4c43317a7",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+    },
+    "tree-sitter-manager.nvim": {
+      "rev": "06c90a3af8eb471f4a4ff979d681312284a8583a",
+      "src": "https://github.com/romus204/tree-sitter-manager.nvim",
+      "version": "'main'"
+    },
+    "vim-fugitive": {
+      "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
+      "src": "https://github.com/tpope/vim-fugitive"
+    },
+    "vscode.nvim": {
+      "rev": "6439ed89d0e10193f07e92268a321d7c6f6e93ee",
+      "src": "https://github.com/Mofiqul/vscode.nvim"
+    }
+  }
+}

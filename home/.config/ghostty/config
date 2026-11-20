@@ -1,0 +1,49 @@
+# font
+# font-family="Fira Code"
+font-size=17
+font-style=Regular
+
+# ligatures
+# JetBrains Mono:
+font-feature=-calt
+font-feature=zero
+font-feature=cv12,cv18,cv19,cv20
+# Fira Code:
+# font-feature=-calt
+# font-feature=-liga
+# font-feature=-dlig
+# font-feature=ss05
+# font-feature=ss03
+
+# theme
+theme=Dracula+
+
+# cursor
+shell-integration-features=no-cursor,no-sudo,ssh-env,ssh-terminfo
+cursor-style=block
+cursor-style-blink=false
+# adjust-cursor-thickness=3
+
+# window
+window-height=40
+window-width=120
+window-padding-x = 10
+
+macos-titlebar-style=tabs
+
+window-save-state = always
+mouse-hide-while-typing = true
+shell-integration = zsh
+quit-after-last-window-closed=true
+window-inherit-working-directory = true
+split-divider-color = #702b0d
+
+# zmx keybinds (tmux-style prefix: ctrl+b > key)
+keybind = ctrl+b>shift+d=text:todo\n
+keybind = ctrl+b>f=text:zs\n
+keybind = ctrl+b>w=text:zws attach\n
+keybind = ctrl+b>x=text:zmx kill $ZMX_SESSION\n
+keybind = ctrl+b>shift+x=text:zs kill\n
+
+auto-update-channel = tip
+clipboard-paste-protection = false
