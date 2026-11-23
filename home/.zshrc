@@ -1,0 +1,149 @@
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt    append_history
+setopt    share_history
+setopt    inc_append_history
+setopt    hist_ignore_space
+
+alias ls='ls -Fa'
+
+# Define colors
+C_DEFAULT='%f%k'
+C_WHITE='%F{white}'
+C_GRAY='%F{244}'
+C_BLACK='%F{black}'
+C_RED='%F{red}'
+C_GREEN='%F{green}'
+C_YELLOW='%F{yellow}'
+C_BLUE='%F{blue}'
+C_PURPLE='%F{magenta}'
+C_CYAN='%F{cyan}'
+C_LIGHTGRAY='%F{white}'
+C_DARKGRAY='%F{black}'
+C_LIGHTRED='%F{red}'
+C_LIGHTGREEN='%F{green}'
+C_LIGHTYELLOW='%F{yellow}'
+C_LIGHTBLUE='%F{blue}'
+C_LIGHTPURPLE='%F{magenta}'
+C_LIGHTCYAN='%F{cyan}'
+C_BG_BLACK='%K{black}'
+C_BG_RED='%K{red}'
+C_BG_GREEN='%K{green}'
+C_BG_YELLOW='%K{yellow}'
+C_BG_BLUE='%K{blue}'
+C_BG_PURPLE='%K{magenta}'
+C_BG_CYAN='%K{cyan}'
+C_BG_LIGHTGRAY='%K{white}'
+
+# neovim executable
+export PATH="$HOME/.nvim/bin:$PATH"
+alias vim=nvim
+
+# default editor
+export EDITOR=nvim
+
+todo() { [[ -e TODO.md ]] && nvim TODO.md || nvim ~/Development/TODO.md; }
+alias zws='zmx-workspace'
+alias zs='zmx-sessionizer'
+
+# Add Homebrew completions before compinit
+[[ -d "${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh/site-functions" ]] && \
+  FPATH="${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh/site-functions:${FPATH}"
+
+# enable completions
+autoload -Uz compinit
+compinit -C
+# Refresh the completion cache once a day in the background so no shell waits for it
+stale_zcompdump=(~/.zcompdump(N.mh+24))
+if (( $#stale_zcompdump )); then
+  { compinit -d ~/.zcompdump.$$ && zcompile ~/.zcompdump.$$ && mv -f ~/.zcompdump.$$.zwc ~/.zcompdump.zwc && mv -f ~/.zcompdump.$$ ~/.zcompdump } &!
+fi
+unset stale_zcompdump
+
+# only when HEAD (SHA) changes
+typeset -g LAST_GIT_SHA=""
+typeset -g GIT_BRANCH=""
+
+precmd() {
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    local sha
+    sha=$(git rev-parse --verify --short HEAD 2>/dev/null) || sha=""
+
+    if [[ $sha != $LAST_GIT_SHA ]]; then
+      LAST_GIT_SHA=$sha
+
+      # compute branch; use symbolic-ref if available (clean branch name)
+      GIT_BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --abbrev-ref HEAD 2>/dev/null)
+      [[ $GIT_BRANCH == "HEAD" ]] && GIT_BRANCH=$sha
+    fi
+  else
+    LAST_GIT_SHA=""
+    GIT_BRANCH=""
+  fi
+}
+
+# Display branch in gray, only if it exists, and not bold
+git_prompt() {
+  [[ -n $GIT_BRANCH ]] && echo " %b${C_GRAY}[${GIT_BRANCH}]"
+}
+
+# Set prompt
+setopt prompt_subst
+PROMPT='%B${C_LIGHTGREEN}%n%b${C_DEFAULT}@${C_BLUE}%m%B${C_LIGHTYELLOW} %1~$(git_prompt)%b${C_DEFAULT} %# '
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --no-rehash - zsh)"
+
+# gpg
+export GPG_TTY="$(tty)"
+
+# local bin
+export PATH="$PATH:$HOME/.local/bin"
+
+# Load Angular CLI autocompletion.
+# source <(ng completion script)
+# export PATH="/opt/homebrew/opt/gradle@7/bin:$PATH"
+
+# Zig
+# export PATH=$PATH:~/Development/zig
+# export PATH=$PATH:~/Development/zls
+
+export KUBE_EDITOR="code --wait"
+
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+
+# Gitignore generator
+function gi() { curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$@ ;}
+
+# PATH analyzer
+alias path-analyzer="echo $PATH | tr ':' '\n' | sort | uniq -c"
+
+alias rm='rm -i'
+
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
+# FNM
+eval "$(fnm env --use-on-cd --shell zsh)"
+
+# GO bin
+export PATH=$PATH:$HOME/go/bin
+
+# zmx completions
+source <(zmx completions zsh)
+
+# zmx tab title — must be last so it wins over fzf/fnm/ghostty hooks
+[[ -n "$ZMX_SESSION" ]] && GHOSTTY_SHELL_FEATURES=${(j:,:)${(@)${(@s:,:)GHOSTTY_SHELL_FEATURES}:#title}}
+_zmx_title() { [[ -n "$ZMX_SESSION" ]] && printf '\e]0;%s\a' "$ZMX_SESSION"; }
+precmd_functions+=(_zmx_title)
+
+# Odin
+export PATH="/Users/loskutovvv/Development/odin:$PATH"
+
+bindkey -e
